@@ -1,24 +1,83 @@
 // game.js
+const startScreen = document.getElementById('startScreen');
+const gameScreen = document.getElementById('gameScreen');
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
+const colorPicker = document.getElementById('colorPicker');
+const fileInput = document.getElementById('fileInput');
+const fileInputLabel = document.getElementById('fileInputLabel');
 
 // Set canvas dimensions based on window size
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const player = {
-  x: canvas.width / 2,
-  y: canvas.height / 2,
-  initialRadius: 10,
-  radius: 10,
-  color: 'rgba(255, 87, 51, 0.8)', // Darker and more opaque color
-  speed: 0,
-  acceleration: 0.02,
-  friction: 0.98,
-};
-
+let player;
 const foods = [];
 const mapSpeedMultiplier = 0.02;
+
+function startGame() {
+  startScreen.style.display = 'none';
+  gameScreen.style.display = 'block';
+
+  // Get color from the color picker
+  const selectedColor = colorPicker.value;
+
+  // Uncomment the line below to enable the color picker option
+  player = createPlayer(canvas.width / 2, canvas.height / 2, 10, selectedColor);
+
+  // Uncomment the lines below to enable the image upload option
+  fileInputLabel.style.display = 'block';
+  fileInput.style.display = 'block';
+
+  // Generate initial food blobs
+  for (let i = 0; i < 20; i++) {
+    generateFood();
+  }
+
+  // Set notebook paper background with reduced opacity
+  canvas.style.backgroundImage = 'url("notebook-paper-background.jpg")';
+  canvas.style.backgroundSize = 'cover';
+  canvas.style.opacity = '0.5'; // Adjust the opacity as needed
+
+  // Set the initial size of the player
+  player.radius = player.initialRadius;
+
+  // Resize canvas on window resize
+  window.addEventListener('resize', function () {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    player.x = canvas.width / 2;
+    player.y = canvas.height / 2;
+  });
+
+  gameloop();
+}
+
+function createPlayer(x, y, radius, color) {
+  return {
+    x,
+    y,
+    radius,
+    initialRadius: radius,
+    color,
+    speed: 0,
+    acceleration: 0.02,
+    friction: 0.98,
+  };
+}
+
+function generateFood() {
+  const neonColors = ['#ff00ff', '#00ffff', '#ff0000', '#00ff00', '#ffff00'];
+
+  const food = {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: 5,
+    color: neonColors[Math.floor(Math.random() * neonColors.length)],
+  };
+
+  foods.push(food);
+}
 
 function drawPlayer() {
   ctx.beginPath();
@@ -90,39 +149,19 @@ function gameloop() {
   requestAnimationFrame(gameloop);
 }
 
-// Generate random food blobs with neon colors
-function generateFood() {
-  const neonColors = ['#ff00ff', '#00ffff', '#ff0000', '#00ff00', '#ffff00'];
-
-  const food = {
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    radius: 5,
-    color: neonColors[Math.floor(Math.random() * neonColors.length)],
-  };
-
-  foods.push(food);
-}
-
-// Generate initial food blobs
-for (let i = 0; i < 20; i++) {
-  generateFood();
-}
-
-// Set notebook paper background with reduced opacity
-canvas.style.backgroundImage = 'url("notebook-paper-background.jpg")';
-canvas.style.backgroundSize = 'cover';
-canvas.style.opacity = '0.5'; // Adjust the opacity as needed
-
-// Set the initial size of the player
-player.radius = player.initialRadius;
-
-// Resize canvas on window resize
-window.addEventListener('resize', function () {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  player.x = canvas.width / 2;
-  player.y = canvas.height / 2;
+colorPicker.addEventListener('input', function () {
+  // Uncomment the line below to enable the color picker option
+  player.color = colorPicker.value;
 });
 
-gameloop();
+fileInput.addEventListener('change', function () {
+  const file = fileInput.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      // Uncomment the line below to enable the image upload option
+      // player = createPlayer(canvas.width / 2, canvas.height / 2, 30, e.target.result);
+    };
+    reader.readAsDataURL(file);
+  }
+});

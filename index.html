@@ -7,7 +7,16 @@
   <title>Edgar.io</title>
 </head>
 <body>
-  <canvas id="gameCanvas"></canvas>
+  <div id="startScreen">
+    <h1>Welcome to Edgar.io</h1>
+    <button onclick="startGame()">Play</button>
+  </div>
+  <div id="gameScreen" style="display: none;">
+    <canvas id="gameCanvas"></canvas>
+    <input type="color" id="colorPicker" style="display: none;">
+    <label for="fileInput" id="fileInputLabel" style="display: none;">Upload Image</label>
+    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+  </div>
   <script src="game.js"></script>
 </body>
 </html>
