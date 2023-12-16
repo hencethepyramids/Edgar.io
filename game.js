@@ -22,10 +22,10 @@ function startGame() {
   // Get color from the color picker
   const selectedColor = colorPicker.value;
 
-  // Uncomment the line below to enable the color picker option
-  player = createPlayer(canvas.width / 2, canvas.height / 2, 10, selectedColor);
+  // Enable the color picker option
+  player = createPlayer(event.clientX, event.clientY, 10, selectedColor);
 
-  // Uncomment the lines below to enable the image upload option
+  // Enable the lines below to enable the image upload option
   fileInputLabel.style.display = 'block';
   fileInput.style.display = 'block';
 
@@ -150,7 +150,7 @@ function gameloop() {
 }
 
 colorPicker.addEventListener('input', function () {
-  // Uncomment the line below to enable the color picker option
+  // Enable the color picker option
   player.color = colorPicker.value;
 });
 
@@ -159,9 +159,33 @@ fileInput.addEventListener('change', function () {
   if (file) {
     const reader = new FileReader();
     reader.onload = function (e) {
-      // Uncomment the line below to enable the image upload option
+      // Enable the image upload option
       // player = createPlayer(canvas.width / 2, canvas.height / 2, 30, e.target.result);
     };
     reader.readAsDataURL(file);
   }
 });
+
+function customizeBall() {
+  const colorPicker = document.getElementById('colorPicker');
+  const fileInput = document.getElementById('fileInput');
+  const fileInputLabel = document.getElementById('fileInputLabel');
+
+  // Show color picker and hide file input initially
+  colorPicker.style.display = 'block';
+  fileInput.style.display = 'none';
+  fileInputLabel.style.display = 'none';
+
+  // Change file input visibility when needed
+  colorPicker.addEventListener('input', function () {
+    colorPicker.style.display = 'block';
+    fileInput.style.display = 'none';
+    fileInputLabel.style.display = 'none';
+  });
+
+  fileInput.addEventListener('change', function () {
+    colorPicker.style.display = 'none';
+    fileInput.style.display = 'block';
+    fileInputLabel.style.display = 'block';
+  });
+}
