@@ -4,13 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap">
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    #startScreen {
+      text-align: center;
+    }
+
+    h1, button {
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    button {
+      font-size: 24px;
+      padding: 15px 30px;
+      margin-bottom: 10px;
+    }
+
+    button.customize {
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+  </style>
   <title>Edgar.io</title>
 </head>
 <body>
-  <div id="startScreen" style="text-align: center;">
+  <!-- Your existing HTML content goes here -->
+  <div id="startScreen">
     <h1>Welcome to Edgar.io</h1>
-    <button onclick="startGame()" style="font-size: 24px; padding: 15px 30px; margin-bottom: 10px;">Play</button><br>
-    <button onclick="customizeBall()" style="font-size: 16px; padding: 10px 20px;">Customize Ball</button>
+    <button id="playBtn" onclick="startGame(event)" style="font-size: 24px; padding: 15px 30px; margin-bottom: 10px;">Play</button><br>
+    <button id="customizeBallBtn" class="customize">Customize Ball</button>
   </div>
   <div id="gameScreen" style="display: none;">
     <canvas id="gameCanvas"></canvas>
