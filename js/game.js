@@ -41,7 +41,7 @@ function startGame() {
   }
 
   // Set notebook paper background with reduced opacity
-  canvas.style.backgroundImage = 'url("images/notebook-paper-background.png")';
+  canvas.style.backgroundImage = 'url("images/notebook-paper-background.jpg")';
   canvas.style.backgroundSize = 'cover';
   canvas.style.opacity = '0.5'; // Adjust the opacity as needed
 

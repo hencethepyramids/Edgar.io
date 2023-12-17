@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap">
   <style>
     body {
@@ -32,10 +32,9 @@
   <title>Edgar.io</title>
 </head>
 <body>
-  <!-- Your existing HTML content goes here -->
   <div id="startScreen">
     <h1>Welcome to Edgar.io</h1>
-    <button id="playBtn" onclick="startGame(event)" style="font-size: 24px; padding: 15px 30px; margin-bottom: 10px;">Play</button><br>
+    <button id="playBtn" onclick="startGame()" style="font-size: 24px; padding: 15px 30px; margin-bottom: 10px;">Play</button><br>
     <button id="customizeBallBtn" class="customize">Customize Ball</button>
   </div>
   <div id="gameScreen" style="display: none;">
@@ -44,6 +43,6 @@
     <label for="fileInput" id="fileInputLabel" style="display: none;">Upload Image</label>
     <input type="file" id="fileInput" accept="image/*" style="display: none;">
   </div>
-  <script src="game.js"></script>
+  <script src="js/game.js"></script>
 </body>
 </html>
