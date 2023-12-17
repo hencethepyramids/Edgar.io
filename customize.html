@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap">
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    #customizeScreen {
+      text-align: center;
+    }
+
+    h1, button {
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    button {
+      font-size: 24px;
+      padding: 15px 30px;
+      margin-bottom: 10px;
+    }
+
+    button.back {
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+  </style>
+  <title>Customize Ball</title>
+</head>
+<body>
+  <div id="customizeScreen">
+    <h1>Customize Your Ball</h1>
+    <button id="selectColorBtn" onclick="selectColor()" style="font-size: 24px; padding: 15px 30px; margin-bottom: 10px;">Select Color</button><br>
+    <button id="uploadImageBtn" onclick="uploadImage()" style="font-size: 24px; padding: 15px 30px; margin-bottom: 10px;">Upload Image</button><br>
+    <button class="back" onclick="goBack()" style="font-size: 16px; padding: 10px 20px;">Back to Game</button>
+  </div>
+
+  <script src="customize.js"></script>
+</body>
+</html>
